@@ -1,0 +1,60 @@
+#messages
+  .box-header
+    = link_to "<span class='glyphicon glyphicon-envelope'></span> New videomail".html_safe, new_message_path, class: "btn btn-primary pull-right"
+    %h2
+      %span.glyphicon.glyphicon-envelope
+      Videomails
+  .box-body
+    = render 'messages/tabs'
+    = form_tag '#', method: :put do
+      %table.table
+        %tbody
+          = render @messages
+
+      - if @messages.count > 0
+        .actions
+          - if params[:status] == 'trash'
+            = link_to 'Delete Permanantly', '#', class: 'btn btn-danger', id: 'btn-delete-selected', disabled: true, onclick: "really_delete_messages();"
+            = link_to 'Restore Selected', '#', class: 'btn btn-info', id: 'btn-restore-selected',  disabled: true, onclick: "restore_messages();"
+          - else
+            = link_to 'Delete Selected', '#', class: 'btn btn-danger', id: 'btn-delete-selected', disabled: true, onclick: "delete_messages();"
+      - else
+        %p.alert.alert-info
+          There is no messages.
+    = paginate(@messages)
+
+:javascript
+  function delete_messages(){
+    $('form').attr('action', "#{destroy_multiple_messages_path}");
+    if (confirm('Are you sure to delete?')){
+      $('form').submit();
+    }
+  }
+
+  function really_delete_messages(){
+    $('form').attr('action', "#{really_destroy_multiple_messages_path}");
+    if (confirm('Are you sure to delete?')){
+      $('form').submit();
+    }
+  }
+
+  function restore_messages(){
+    $('form').attr('action', "#{restore_multiple_messages_path}");
+    if (confirm('Are you sure to restore?')){
+      $('form').submit();
+    }
+  }
+
+  function update_button_statuses(){
+    if($('input:checked').length<1){
+      $('.actions .btn').attr('disabled', true);
+    }else{
+      $('.actions .btn').attr('disabled', false);
+    }
+  }
+
+  $('input').on('click', function(){
+    update_button_statuses();
+  });
+
+  update_button_statuses();

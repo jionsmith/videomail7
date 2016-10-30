@@ -1,0 +1,17 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:content => "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;", :name => "viewport"}/
+    = javascript_include_tag "jquery"
+    = javascript_include_tag "underscore"
+    = stylesheet_link_tag "email", media: "all", "data-turbolinks-track" => true
+  %body#template-view
+    = link_to 'back', messages_path, class: 'btn-back' if @back
+
+    - if !current_account.blank?
+      = render 'shared/email_authorized'
+    - else
+      = render 'shared/email_unauthorized'
+
+    = yield :javascript

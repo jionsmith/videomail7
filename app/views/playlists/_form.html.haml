@@ -1,0 +1,51 @@
+#new-playlist
+  = bootstrap_form_for(@playlist, layout: :vertical) do |f|
+    = f.text_field :title
+
+    - if !@playlist.new_record?
+      = f.form_group do
+        .playlist-checked
+          %h5 Playlist:
+          - if @playlist.videos.count > 0
+            .row
+              - @playlist.videos.each do |video|
+                = render 'video', video: video
+              .col-sm-3.playlist-outro.nopaddingleft
+                = f.text_area :outro_text, class: 'form-control', rows: 6, placeholder: 'Your outro message', hide_label: true
+
+          - else
+            %p.text-info.playlist-example
+              There is no video in this playlist, Please add some videos in the below
+
+      %hr
+
+      = f.form_group do
+        .playlist-videos
+          %h5 Your Videos:
+          - if !@playlist.new_record?
+            - if @videos.count > 0
+              .row
+                - @videos.each do |video|
+                  = render 'video', video: video
+              = paginate @videos
+            - else
+              %p.text-info
+                There is no available videos to add
+
+
+    = f.form_group do
+      = f.submit @playlist.persisted? ? 'Save' : 'Create', class: 'btn btn-primary'
+      = link_to 'Save and close', playlists_path, class: 'btn btn-primary'
+
+:javascript
+  function setPlaylistHeight() {
+    var outro = $('.playlist-outro textarea');
+    var height = $('.playlist-video:first-child').outerHeight();
+    var width = $('.playlist-video:first-child').outerWidth();
+
+    outro.css({
+      'height': height,
+      'width': width
+    })
+  }
+  setPlaylistHeight();

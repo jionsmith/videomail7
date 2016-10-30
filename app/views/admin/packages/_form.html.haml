@@ -1,0 +1,54 @@
+= bootstrap_form_for([:admin, @package], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+  = f.text_field :name
+  = f.text_area :description
+  - unless @package.new_record?
+    %h4 
+      Templates
+    .row
+      .col-sm-9.col-sm-offset-3
+        %table.table
+          %thead
+            %th Title
+            %th Text example
+            %th Price
+            %th
+          - @package.templates.each do |template|
+            %tr
+              %td
+                = template.title
+              %td
+                = template.text_example
+              %td
+                = template.product.price
+              %td
+                .btn-group
+                  = link_to remove_template_admin_package_path(@package, template: template), method: :put, class: "btn btn-danger", data: { confirm: 'Are you sure to remove?'} do
+                    %span.glyphicon.glyphicon-trash
+
+        %p
+          = link_to "Manage Templates", manage_templates_admin_package_path(@package), id: 'btn-manage-template', class: 'btn btn-info'
+
+  %h4 Product Info
+  = f.fields_for :product, @package.product do |product|
+    = product.text_field :price, class: "form-control"
+    = product.select :status, Product::STATUS, {}, class: "form-control"
+  
+  = f.form_group do
+    = f.submit "Save", class: 'btn btn-primary'
+
+= content_for :javascript do
+  :javascript
+    var template_manage_window = null;
+    $(function(){
+      $('#btn-manage-template').on("click", function(e){
+        e.preventDefault();
+        template_manage_window = window.open($(this).attr('href'), '_blank', "width=768, height=600");
+
+      });
+    });
+
+    function closeTemplateManageWindow()
+    {
+      template_manage_window.close();
+      window.location.reload();
+    }

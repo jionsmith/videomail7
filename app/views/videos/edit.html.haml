@@ -1,0 +1,32 @@
+.box-header
+  %h2 Edit Video
+.box-body
+  = bootstrap_form_for(@video) do |f|
+    = f.text_field :title, onfocus: 'this.select();'
+
+    = f.form_group do
+      %h5
+        Preview Image
+        %span.small
+          (choose by clicking on it)
+      - if !params[:select_thumbanil].blank? or @video.screenshot.blank?
+        .row
+          = collection_radio_buttons(:video, :screenshot, @video.screenshots, :to_s, :to_s) do |b|
+            .col-xs-6.col-md-4
+              .radio.select
+                = b.label( class: 'no-padding' ) do
+                  = b.radio_button( class: 'hide' )
+                  = image_tag(b.object, class: 'img-responsive img-rounded')
+      - else
+        = image_tag(@video.screenshot, class: 'img-responsive img-rounded')
+        %br/
+        = link_to "Choose from screenshots", edit_video_path(@video, select_thumbanil: true), class: 'btn btn-info'
+
+    = f.form_group do
+      = f.label "Status: "
+      = @video.status
+
+    = f.form_group do
+      = f.submit "Save", class: "btn btn-primary"
+      - if !@video.encoded
+        = link_to "Refresh", refresh_video_path(@video), class: 'btn btn-info', method: :put

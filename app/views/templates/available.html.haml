@@ -1,0 +1,42 @@
+.box-header
+  %h2
+    %span.glyphicon.glyphicon-th
+    Templates
+
+.box-body
+  .row.categorys
+    .col-sm-12.no-padding
+      %p
+        = link_to 'ALL', available_templates_path, class: 'label label-primary'
+        
+        - Category.root_category.children.each do |category|
+          - if category.products.enabled.templates.count > 0
+            = link_to category.name, available_templates_path(category_id: category.id), class: 'label label-primary'
+        
+  .row
+    - @templates.each_with_index do |template, i|
+      .col-md-3.template
+        .previewimg
+          - if template.preview_image?
+            = image_tag template.preview_image.thumb.url
+          - else
+            = image_tag '140x140-default.png'
+        .template-title
+          %h4= truncate(template.title, length: 20)
+        -#.template-desc
+        -#  %p= template.text_example
+        .row
+          .template-meta.col-md-12
+            = link_to preview_template_path(template), class: 'btn btn-primary col-md-3', "data-target" => "#modal", "data-toggle" => "modal" do
+              %span.glyphicon.glyphicon-eye-open
+            - if current_account.has_product?(template.product)
+              = link_to '#', class: 'btn btn-success col-md-8 col-md-offset-1' do
+                %span.glyphicon.glyphicon-ok
+                %span Purchased
+            - else
+              = link_to "ADD", add_to_user_product_path(template.product), class: 'btn btn-default col-md-8 col-md-offset-1', method: :put
+
+      - if (i+1) % 4 == 0
+        .clearfix
+
+  = paginate @templates

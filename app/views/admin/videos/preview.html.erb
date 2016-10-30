@@ -1,0 +1,6 @@
+<h2><%= @video.title %></h2>
+<video id="movie" width="<%= @h264_encoding.width %>" height="<%= @h264_encoding.height %>" preload="none"
+  poster="<%= @video.screenshots.first %>" controls>
+  <source src="<%= @h264_encoding.url %>" type="video/mp4">
+  <source src="<%= @ogg_encoding.url %>" type="video/ogg">
+</video>

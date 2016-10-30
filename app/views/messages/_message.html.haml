@@ -1,0 +1,37 @@
+%tr
+  %td
+    = check_box_tag "messages[]", message.id
+  %td
+    - if message.deleted?
+      = message.subject
+    - else
+      = link_to preview_message_path(message), title: 'Preview' do
+        = message.subject
+  %td
+    %span{title: message.emails}
+      = message.emails.split(',').first
+      - if message.emails.split(',').count > 1
+        = "(#{message.emails.split(',').count})"
+  %td
+    %span.glyphicon{class: message.status, title: message.status }
+  %td
+    - if message.sent? || message.delayed_email?
+      - if message.send_at
+        = message.send_at
+      - else
+        = message.updated_at
+
+  %td.text-right
+    .btn-group.actions
+      - unless message.deleted?
+        = link_to preview_message_path(message), title: 'Preview' do
+          %span.glyphicon.glyphicon-eye-open
+          - if message.draft?
+            = link_to edit_message_path(message), title: 'Edit' do
+              %span.glyphicon.glyphicon-pencil
+          = link_to deliver_message_path(message), method: :put, title: 'Send' do
+            %span.glyphicon.glyphicon-send
+          = link_to clone_message_path(message), method: :put, title: 'Clone' do
+            %span.glyphicon.glyphicon-hdd
+          = link_to message_path(message), data: { confirm: 'Are you sure to delete?'}, method: :delete, title: 'Delete' do
+            %span.glyphicon.glyphicon-trash

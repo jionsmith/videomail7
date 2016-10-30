@@ -1,0 +1,14 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:content => "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;", :name => "viewport"}/
+  %body
+    = link_to 'back', messages_path if @back
+
+    - if !@message.video.blank?
+      = render_template_content_for_video(@template, @message.video, 'text' => @message.text, 'link' => video_url(@message.video, token: @message.token, email: @email), 'title' => @message.subject)
+        
+
+    - if !@message.playlist.blank?
+      = render_template_content_for_playlist(@template, @message.playlist, 'text' => @message.text, 'link' => playlist_url(@message.playlist, token: @message.token, email: @email), 'title' => @message.subject)

@@ -1,0 +1,46 @@
+#player
+  %video#movie{:controls => "", :height => "auto", :preload => "none", :width => "100%", :autoplay => true, :autobuffer => true}
+    %source#h264{:type => "video/mp4"}
+    %source#ogg{:type => "video/ogg"}
+
+  - if !@playlist.outro_text.blank?
+    .outro
+      %div
+        %span
+          = @playlist.outro_text.html_safe
+
+:javascript
+  var videos = eval(#{@playlist.videos.to_json});
+  var currentVideo = null;
+  var videoPlayer = $('#movie');
+
+  var initVideo = function(video){
+    videoPlayer.attr('poster', video.screenshot);
+    $('#h264').attr('src', video.h264_url);
+    $('#ogg').attr('src', video.ogg_url);
+    $('#movie').load();
+    currentVideo = video;
+  }
+
+  var nextVideo = function(video){
+    var index = (_.indexOf(videos, video) + 1) % videos.length
+    return videos[index];
+  }
+
+  videoPlayer.bind('playing',function(){
+    $('#player').removeClass('ended');
+    $('#player').addClass('playing');
+  });
+
+  videoPlayer.bind('ended',function(){
+    if (nextVideo(currentVideo) != videos[0]){
+      initVideo(nextVideo(currentVideo));
+    }
+
+    if(currentVideo == videos[videos.length -1]){
+      $('#player').removeClass('playing');
+      $('#player').addClass('ended');
+    }
+  });
+
+  initVideo(videos[0]);

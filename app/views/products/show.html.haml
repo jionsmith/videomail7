@@ -1,0 +1,32 @@
+.box-header
+  %h2 Product
+.box-body
+  %h4
+    = @product.parent_object.product_name
+
+  - if current_account.has_product?(@product)
+    %p
+      .label.label-info
+        You have already purchased this product.
+
+  %p
+    - if @product.parent_object.try :preview_image?
+      = image_tag @product.parent_object.preview_image.thumb.url
+
+  %p
+    = @product.parent_object.description
+  %p
+    %strong
+      Type:
+    = @product.productable_type
+  %p
+    %strong
+      Price:
+    = humanized_money_with_symbol(@product.price)
+
+  - unless current_account.has_product?(@product)
+    %p
+      - if @product.price.to_f == 0
+        = link_to 'Add Product', add_to_user_product_path(@product), class: 'btn btn-primary', method: :put
+      - else
+        = link_to 'Buy Now', order_product_path(@product), class: 'btn btn-primary'

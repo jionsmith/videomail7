@@ -1,0 +1,32 @@
+!!!
+%html{:lang => "en"}
+  %head
+    = render 'shared/meta_tags'
+    %title videomail7
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body{ :class => "#{controller_name}_#{action_name}" }
+    = render "shared/header_authorized"
+    #google_transl.container
+      .row
+        .col-md-12
+          #google_translate_element
+            = render "shared/translate"
+    #wrapper.container
+      = render "shared/flashes"
+      .row.row-offcanvas.row-offcanvas-right
+        .col-xs-12.col-sm-8.col-lg-9.bgwhite
+          = yield
+
+        .col-xs-12.col-sm-4.col-lg-3
+
+          = render "shared/sidebar"
+
+      = render "shared/footer"
+
+    #modal.modal.fade{:role => "dialog"}
+      .modal-dialog.modal-lg
+        .modal-content
+    %script{:src => "//cdn.pandastream.com/u/2.0/panda-uploader.min.js"}
+    = yield :javascript

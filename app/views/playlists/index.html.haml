@@ -1,0 +1,17 @@
+.box-header
+  = link_to "<span class='glyphicon glyphicon-list-alt'></span> New Playlist".html_safe, new_playlist_path, class: "btn btn-primary pull-right"
+  %h2 
+    %span.glyphicon.glyphicon-list-alt
+    Playlist(s)
+.box-body  
+  .table-responsive
+    %table.table.table-condensed.table-striped
+      %thead
+        %th
+        %th Title
+        %th Videos
+        %th Created at
+        %th
+      = render @playlists
+
+  = paginate(@playlists)

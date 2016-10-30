@@ -1,0 +1,432 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: asset-url('bgimage.jpg') center center no-repeat fixed;
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  padding: 50px 0 0 0;
+}
+
+body.extern {
+  background-image: asset-url('bgextern.jpg');
+}
+
+::selection {
+  background-color: $primarybg;
+  color: $light;
+}
+
+::-moz-selection {
+  background-color: $primarybg;
+  color: $light;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+.break {
+  white-space: normal;
+}
+#wrapper {
+  margin-top: 35px;
+  min-height: 550px;
+}
+
+a, a:visited {
+  color: $grey4;
+
+  &:hover {
+    text-decoration: none;
+    color: $primary;
+  }
+}
+
+a:focus {
+  outline: none;
+}
+
+.nopaddingleft {
+  padding-left: 0!important;
+}
+
+.theme-dropdown .dropdown-menu {
+  display: block;
+  position: static;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.video-thumb {
+  max-height: 50px;
+}
+
+.bgwhite {
+  background-color: $light;
+  padding: 0px;
+  @include border-radius(3px)
+}
+
+textarea {
+  resize: none;
+}
+
+/* Buttons */
+
+.btn {
+  @include border-radius(3px);
+  border: none;
+  color: $light !important;
+  @include transition(all 300ms ease);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Roboto Condensed';
+
+  &:before {
+    background: rgba($light, .1);
+    bottom: -50%;
+    content: "";
+    left: -50%;
+    position: absolute;
+    top: -50%;
+    @include transform(rotate(10deg));
+    width: 80%;
+    @include transition(all 300ms ease);
+  }
+  &:hover:before {
+    left: 50px;
+  }
+
+  a, a:visited {
+    color: $light;
+  }
+
+  &.btn-default {
+    background-color: lighten($grey5, 10);
+    color: $light;
+
+    &:hover {
+      background-color: $primarybg;
+    }
+  }
+
+  &.btn-primary {
+    background-color: $primarybg;
+
+    &:hover {
+      background-color: $secondarybg;
+    }
+  }
+  &.btn-record {
+    background-color: #d70909;
+    @include transition(all 300ms ease-in);
+
+    &:hover {
+      background-color: ligten(#d70909, 8);
+    }
+
+    span {
+      color: $light;
+    }
+  }
+}
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $primary;
+  font-weight: 300;
+}
+
+.dinline {
+  display: inline;
+}
+
+.shortline {
+  width: 50%;
+  height: 2px;
+  background-color: $grey6;
+  margin-bottom: 30px;
+}
+
+.footerline {
+  background-color: $grey6;
+  height: 1px;
+  margin: 20px 0;
+  padding-bottom: 1px;
+}
+
+.mr1 {
+  margin-right: 10px;
+}
+
+.mr2 {
+  margin-right: 20px !important;
+}
+
+.prelative {
+  position: relative;
+}
+.pabsolute {
+  position: absolute;
+}
+
+.disabled {
+
+  a {
+    color: $grey5 !important;
+  }
+}
+
+/* Plans */
+#plans {
+
+  ul {
+    list-style: none;
+    overflow: hidden;
+    position: relative;
+
+    &.coming-soon {
+
+      &:before {
+        content: 'Coming soon...';
+        padding-top: 200px;
+        font-size: 2.5em;
+        font-weight: 300;
+        position: absolute;
+        left: 15px;
+        top: 0;
+        right: 15px;
+        bottom: 0;
+        background-color: rgba($primarybg, .7);
+        z-index: 1;
+        color: $light;
+        text-align: center;
+      }
+    }
+
+    li {
+      padding: 15px;
+      border: 1px solid darken($light, 2);
+
+      &.plan-head {
+        padding: 0;
+        @include border-radius(5px 5px 0 0);
+        overflow: hidden;
+        text-align: center;
+
+        h3 {
+          background-color: $primary;
+          color: $light;
+          margin: 0;
+          padding: 15px;
+          font-size: 2.3em;
+        }
+      }
+      &.plan-image {
+        margin: 0;
+        padding: 30px;
+        text-align: center;
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+        .price {
+          font-size: 3.5em;
+
+          &.price-month {
+            font-size: 1.1em;
+            display: block;
+
+            .price-small {
+              font-size: 1em;
+            }
+          }
+
+          .price-small {
+            font-size: .5em;
+            color: $grey3;
+          }
+        }
+      }
+      &.yes,
+      &.no {
+        border-bottom: 1px solid darken($grey6, 5);
+        background-color: lighten($grey6, 5);
+        position: relative;
+        padding-right: 55px;
+        word-break: break-word;
+        font-weight: 400;
+        @include transition(al 300ms);
+
+        &:hover {
+          &:hover {
+            background-color: lighten($grey6, 4);
+          }
+        }
+      }
+      &.yes {
+
+        &:after {
+          content: '';
+          background: asset-url('checker.png') -2px 0px no-repeat;
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          width: 30px;
+          height: 30px;
+        }
+      }
+      &.no {
+
+        &:after {
+          content: '';
+          background: asset-url('checker.png') -2px -72px no-repeat;
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          width: 30px;
+          height: 30px;
+        }
+      }
+      &.upgrade {
+        background-color: $grey6;
+        color: $light;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: 600;
+        @include border-radius(0 0 5px 5px);
+      }
+      &.buy {
+        background-color: $primarybg;
+        text-align: center;
+        padding: 0;
+        overflow: hidden;
+        @include border-radius(0 0 5px 5px);
+
+        &.free {
+
+          a {
+            width: 100%;
+          }
+        }
+
+        a {
+          color: $light;
+          font-weight: 500;
+          font-size: 1.2em;
+          display: block;
+          padding: 15px;
+          border-bottom: 1px solid $grey5;
+          width: 50%;
+          @include transition(all 300ms);
+
+          &:hover {
+            background-color: $secondarybg;
+          }
+        }
+      }
+    }
+  }
+}
+
+.radio {
+
+  &.select {
+    @include border-radius(6px);
+    overflow: hidden;
+
+    label {
+
+      &.active {
+
+        &:before {
+          color: #ffffff;
+          content: "";
+          display: block;
+          font-family: "Glyphicons Halflings";
+          position: absolute;
+          right: 4px;
+          z-index: 2;
+        }
+
+        &:after {
+          border-left: 35px solid rgba(0, 0, 0, 0);
+          border-top: 35px solid $primarybg;
+          content: "";
+          display: block;
+          height: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 0;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+.products_index, .templates_index, .templates_available {
+  #modal {
+    .modal-dialog {
+      width: 80%;
+      height: 90%;
+      overflow-y: auto;
+    }
+  }
+
+  #btn-template-preview-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  .modal-content{
+    border-radius: 0;
+    iframe{
+      margin-bottom: -6px;
+    }
+  }
+}
+
+.nav-tabs {
+
+  li {
+
+    a,
+    span {
+      border: 1px solid transparent;
+      @include border-radius(4px 4px 0 0);
+      line-height: 1.42857;
+      margin-right: 2px;
+      display: block;
+      padding: 10px 15px;
+      position: relative;
+    }
+  }
+}
+#google_transl {
+  margin: 20px auto -17px;
+  position: relative;
+  left: -15px;
+}
+#google_transl_home {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+

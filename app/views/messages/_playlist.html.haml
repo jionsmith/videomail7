@@ -1,0 +1,5 @@
+%li
+  = link_to "#", class: "sample-playlist", "data-playlist-title" => playlist.title, "data-playlist-id" => playlist.id do
+    = image_tag playlist.screenshot, class: "playlist-thumb pull-left", style: "max-width: 100px;"
+    %span.pull-left= playlist.title
+    %span.clearfix

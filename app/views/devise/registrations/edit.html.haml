@@ -1,0 +1,21 @@
+.box-body
+  %h2 Profile Setting
+  %br
+
+  = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+    = devise_error_messages!
+
+    .form-group
+      %label.control-label.col-sm-3
+        Email
+      .col-sm-9
+        .form-control
+          = resource.email
+        %p.help-block
+          Email field is not editable.
+
+    = f.text_field :first_name
+    = f.text_field :last_name
+
+    = f.form_group do
+      = f.submit 'Update'

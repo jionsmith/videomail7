@@ -1,0 +1,34 @@
+:javascript
+  $('#iframe').load(function(){
+    $('.loading').remove();
+    $('#iframe')[0].height = $('#iframe')[0].contentWindow.document.body.scrollHeight + 100;
+  });
+
+= link_to "+ Add", add_to_user_product_path(@template.product), class: 'btn btn-default preview-add', method: :put
+%button#btn-template-preview-close.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+%p.loading
+  Loading...
+  
+%iframe#iframe{width: '100%', height:'400px', noborder: true, style: 'border:none;', src: template_path(@template)}
+
+
+- if !@related_products.blank?
+  #related-products
+    .row
+      %h3 Related templates
+      - @related_products[0..3].each_with_index do |product, i|
+        - template = product.productable
+        .col-md-2.template
+          .previewimg
+            - if template.preview_image?
+              = image_tag template.preview_image.thumb.url
+            - else
+              = image_tag '140x140-default.png'
+          .template-title
+            %h4= truncate(template.title, length: 20)
+          .row
+            .template-meta.col-md-12
+              = link_to preview_template_path(template), class: 'btn btn-primary', "data-target" => "#modal", "data-toggle" => "modal" do
+                %span.glyphicon.glyphicon-eye-open
+                %span Preview

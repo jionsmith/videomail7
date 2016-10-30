@@ -1,0 +1,26 @@
+.container-fluid.login
+  .container
+    .col-xs-12.col-sm-12.col-md-7.col-lg-8
+      = image_tag 'login_teaser.png', class: 'img-responsive'
+      %h2 A video email says more than a thousand words
+      %p
+        Finally, send video in email. Embed video in email and communicate your message perfectly personal. Bring messages to life, drive higher recipient engagement,
+        and increase video views with your own fully embedded videomail. Record your own video directly from videomail7.
+    .col-xs-12.col-sm-12.col-md-5.col-lg-4
+      .well.no-padding
+        .header
+          %h2 Sign in
+        .wellform 
+          = bootstrap_form_for(resource, as: resource_name, layout: :vertical, url: session_path(resource_name)) do |f|
+            = f.email_field :email, class: 'form-control'
+            = f.password_field :password, class: 'form-control'
+
+            = f.form_group do
+              = f.submit 'Sign in', class: 'btn btn-primary btn-block'
+              .baio-login
+                = link_to '/auth/bonofa' do
+                  Sign in with
+                  ='<span>B</span>AIO'.html_safe
+
+          .shared_links_extern
+            = render 'devise/shared/links'

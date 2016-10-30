@@ -1,0 +1,40 @@
+%h2 Products
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Type
+      %th Price
+      %th Status
+      %th Categories
+      %th Accounts
+      %th Created at
+      %th Updated at
+      %th
+  %tbody
+    - @templates.each do |template|
+      %tr{ class: "#{'danger' if !template.product.is_enabled?}" }
+        %td
+          = template.title
+        %td
+          = template.product.productable_type
+        %td
+          = humanized_money_with_symbol(template.product.price)
+        %td
+          = template.product.formatted_status
+        %td
+          - template.product.categories.each do |category|
+            = (category.parents.map(&:name) << category.name).join('/')
+            %br
+        %td
+          = template.product.accounts.count
+        %td
+          = template.product.created_at.to_s(:db)
+        %td
+          = template.product.updated_at.to_s(:db)
+        %td.text-right
+          .btn-group
+            = link_to edit_admin_product_path(template.product), class: "btn btn-info" do
+              %span.glyphicon.glyphicon-edit
+            = link_to admin_product_path(template.product), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure to delete?'} do
+              %span.glyphicon.glyphicon-trash

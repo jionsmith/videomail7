@@ -1,0 +1,11 @@
+= bootstrap_form_for([:admin, @category], layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
+  = f.text_field :name
+  = f.select :parent_id, [['Please select a category', '']] + Category.select_options
+
+  = f.form_group do
+    = f.check_box :default
+  = f.form_group do
+    = f.submit "Save", class: 'btn btn-primary'
+
+    - unless @category.new_record?
+      = link_to "Delete", admin_category_path(@category), :method => :delete, data:{ :confirm=>'Are you sure to delete?' }, class: 'btn btn-danger'

@@ -1,0 +1,8 @@
+- if !@message.video.blank?
+  = render_template_content_for_video(@template, @message.video, 'text' => @message.text, 'link' => video_url(@message.video, token: @message.token), 'title' => @message.subject) do
+    = yield
+
+- if !@message.playlist.blank?
+  = render_template_content_for_playlist(@template, @message.playlist, 'text' => @message.text, 'link' => playlist_url(@message.playlist, token: @message.token), 'title' => @message.subject) do
+    = yield
+    

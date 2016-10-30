@@ -1,0 +1,230 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,300);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300);
+/* -- Fonts -- */
+/* -- Roboto Light -- */
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-Light-webfont.eot');
+  src: asset-url('Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-Light-webfont.woff') format('woff'),
+       asset-url('Roboto-Light-webfont.ttf') format('truetype'),
+       asset-url('Roboto-Light-webfont.svg#robotolight') format('svg');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-LightItalic-webfont.eot');
+  src: asset-url('Roboto-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-LightItalic-webfont.woff') format('woff'),
+       asset-url('Roboto-LightItalic-webfont.ttf') format('truetype'),
+       asset-url('Roboto-LightItalic-webfont.svg#robotolight_italic') format('svg');
+  font-weight: 200;
+  font-style: italic;
+}
+
+/* -- Roboto Regular -- */
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-Regular-webfont.eot');
+  src: asset-url('Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-Regular-webfont.woff') format('woff'),
+       asset-url('Roboto-Regular-webfont.ttf') format('truetype'),
+       asset-url('Roboto-Regular-webfont.svg#robotoregular') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-Italic-webfont.eot');
+  src: asset-url('Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-Italic-webfont.woff') format('woff'),
+       asset-url('Roboto-Italic-webfont.ttf') format('truetype'),
+       asset-url('Roboto-Italic-webfont.svg#robotoitalic') format('svg');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* -- Roboto Medium -- */
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-Medium-webfont.eot');
+  src: asset-url('Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-Medium-webfont.woff') format('woff'),
+       asset-url('Roboto-Medium-webfont.ttf') format('truetype'),
+       asset-url('Roboto-Medium-webfont.svg#robotomedium') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-MediumItalic-webfont.eot');
+  src: asset-url('Roboto-MediumItalic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-MediumItalic-webfont.woff') format('woff'),
+       asset-url('Roboto-MediumItalic-webfont.ttf') format('truetype'),
+       asset-url('Roboto-MediumItalic-webfont.svg#robotomedium_italic') format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* -- Roboto Bold -- */
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-Bold-webfont.eot');
+  src: asset-url('Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-Bold-webfont.woff') format('woff'),
+       asset-url('Roboto-Bold-webfont.ttf') format('truetype'),
+       asset-url('Roboto-Bold-webfont.svg#robotobold') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-BoldItalic-webfont.eot');
+  src: asset-url('Roboto-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-BoldItalic-webfont.woff') format('woff'),
+       asset-url('Roboto-BoldItalic-webfont.ttf') format('truetype'),
+       asset-url('Roboto-BoldItalic-webfont.svg#robotobold_italic') format('svg');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* -- Roboto Black -- */
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-Black-webfont.eot');
+  src: asset-url('Roboto-Black-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-Black-webfont.woff') format('woff'),
+       asset-url('Roboto-Black-webfont.ttf') format('truetype'),
+       asset-url('Roboto-Black-webfont.svg#robotoblack') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: roboto;
+  src: asset-url('Roboto-BlackItalic-webfont.eot');
+  src: asset-url('Roboto-BlackItalic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('Roboto-BlackItalic-webfont.woff') format('woff'),
+       asset-url('Roboto-BlackItalic-webfont.ttf') format('truetype'),
+       asset-url('Roboto-BlackItalic-webfont.svg#robotoblack_italic') format('svg');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* -- Roboto Condensed Light -- */
+@font-face {
+  font-family: robotocondensed;
+  src: asset-url('RobotoCondensed-Light-webfont.eot');
+  src: asset-url('RobotoCondensed-Light-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('RobotoCondensed-Light-webfont.woff') format('woff'),
+       asset-url('RobotoCondensed-Light-webfont.ttf') format('truetype'),
+       asset-url('RobotoCondensed-Light-webfont.svg#roboto_condensedlight') format('svg');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: robotocondensed;
+  src: asset-url('RobotoCondensed-LightItalic-webfont.eot');
+  src: asset-url('RobotoCondensed-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('RobotoCondensed-LightItalic-webfont.woff') format('woff'),
+       asset-url('RobotoCondensed-LightItalic-webfont.ttf') format('truetype'),
+       asset-url('RobotoCondensed-LightItalic-webfont.svg#roboto_condensedlight_italic') format('svg');
+  font-weight: 200;
+  font-style: italic;
+}
+
+/* -- Roboto Condensed Regular -- */
+@font-face {
+  font-family: robotocondensed;
+  src: asset-url('RobotoCondensed-Regular-webfont.eot');
+  src: asset-url('RobotoCondensed-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('RobotoCondensed-Regular-webfont.woff') format('woff'),
+       asset-url('RobotoCondensed-Regular-webfont.ttf') format('truetype'),
+       asset-url('RobotoCondensed-Regular-webfont.svg#roboto_condensedregular') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: robotocondensed;
+  src: asset-url('RobotoCondensed-Italic-webfont.eot');
+  src: asset-url('RobotoCondensed-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('RobotoCondensed-Italic-webfont.woff') format('woff'),
+       asset-url('RobotoCondensed-Italic-webfont.ttf') format('truetype'),
+       asset-url('RobotoCondensed-Italic-webfont.svg#roboto_condenseditalic') format('svg');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* -- Roboto Condensed Bold -- */
+@font-face {
+  font-family: robotocondensed;
+  src: asset-url('RobotoCondensed-Bold-webfont.eot');
+  src: asset-url('RobotoCondensed-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('RobotoCondensed-Bold-webfont.woff') format('woff'),
+       asset-url('RobotoCondensed-Bold-webfont.ttf') format('truetype'),
+       asset-url('RobotoCondensed-Bold-webfont.svg#roboto_condensedbold') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: robotocondensed;
+  src: asset-url('RobotoCondensed-BoldItalic-webfont.eot');
+  src: asset-url('RobotoCondensed-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('RobotoCondensed-BoldItalic-webfont.woff') format('woff'),
+       asset-url('RobotoCondensed-BoldItalic-webfont.ttf') format('truetype'),
+       asset-url('RobotoCondensed-BoldItalic-webfont.svg#roboto_condensedbold_italic') format('svg');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* -- Mixins -- */
+@mixin background-size($type) {
+  -webkit-background-size: $type;
+  -o-background-size:      $type;
+  background-size:         $type;
+}
+
+@mixin transition($values) {
+  -webkit-transition: $values;
+  -moz-transition:    $values;
+  -ms-transition:     $values;
+  -o-transition:      $values;
+  transition:         $values;
+}
+
+@mixin box-shadow($values) {
+  -webkit-box-shadow: $values;
+  -moz-box-shadow:    $values;
+  -ms-box-shadow:     $values;
+  -o-box-shadow:      $values;
+  box-shadow:         $values;
+}
+
+@mixin border-radius($values) {
+  -webkit-border-radius: $values;
+  -moz-border-radius:    $values;
+  -ms-border-radius:     $values;
+  -o-border-radius:      $values;
+  border-radius:         $values;
+}
+
+@mixin transform($values) {
+  -webkit-transform: $values;
+  -moz-transform:    $values;
+  -ms-transform:     $values;
+  -o-transform:      $values;
+  transform:         $values;
+}
+
+@mixin opacity($value) {
+  opacity: $value;
+  filter:  alpha(opacity=$value*100);
+}

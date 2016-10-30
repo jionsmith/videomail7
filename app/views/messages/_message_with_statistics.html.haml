@@ -1,0 +1,35 @@
+- message.emails_to_a.each_with_index do |email, i|
+  %tr
+    %td
+      - if i==0
+        - if message.deleted?
+          = message.subject
+        - else
+          = link_to preview_message_path(message), title: 'Preview' do
+            = message.subject
+    %td
+      = email
+    %td
+      - if message.access_logs.by_email(email).count > 0
+        = message.access_logs.by_email(email).first.accessed_at.utc.to_date
+    %td
+      - if message.access_logs.by_email(email).count > 0
+        = message.access_logs.by_email(email).first.accessed_at.utc.to_s(:time)
+
+    %td
+      - if message.access_logs.by_email(email).count > 0
+        = message.access_logs.by_email(email).first.accessed_at.to_date
+    %td
+      - if message.access_logs.by_email(email).count > 0
+        = message.access_logs.by_email(email).first.accessed_at.to_s(:time)
+
+    %td
+      - if current_account.can_see_statistics?
+        - if message.read_any?
+          = link_to statistics_message_path(message), "data-target" => "#modal", "data-toggle" => "modal" do
+            = pluralize(message.access_logs.by_email(email).count, 'time')
+        - else
+          = pluralize(message.access_logs.by_email(email).count, 'time')
+
+%tr
+  %td.bg-warning{:'colspan'=>'7'}

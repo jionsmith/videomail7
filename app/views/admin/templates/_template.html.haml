@@ -1,0 +1,15 @@
+%tr
+  %td= image_tag template.preview_image.thumb.url, width: 100 if template.preview_image
+  %td= template.title
+  %td= template.premium_template
+  %td= template.product.try :price
+  %td= template.created_at.to_s(:db)
+  %td= template.updated_at.to_s(:db)
+  %td.text-right
+    .btn-group
+      = link_to admin_template_path(template), class: "btn btn-primary" do
+        %span.glyphicon.glyphicon-eye-open
+      = link_to edit_admin_template_path(template), class: "btn btn-info" do
+        %span.glyphicon.glyphicon-edit
+      = link_to admin_template_path(template), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure to delete?'} do
+        %span.glyphicon.glyphicon-trash

@@ -1,0 +1,27 @@
+%h2 Edit Video
+= bootstrap_form_for([:admin, @video]) do |f|
+  = f.text_field :title
+
+  = f.form_group do
+    %h5 Preview Image
+    - if !params[:select_thumbanil].blank? or @video.screenshot.blank?
+      .row
+        = collection_radio_buttons(:video, :screenshot, @video.screenshots, :to_s, :to_s) do |b| 
+          .col-sm-3
+            .radio
+              = b.label do 
+                = b.radio_button
+                = image_tag(b.object, class: 'img-responsive img-rounded')
+    - else
+      = image_tag(@video.screenshot, class: 'img-responsive img-rounded')
+      %br/
+      = link_to "Choose from screenshots", edit_admin_video_path(@video, select_thumbanil: true), class: 'btn btn-info'
+
+  = f.form_group do
+    = f.label "Status: "
+    = @video.status
+
+  = f.form_group do
+    = f.submit "Save", class: "btn btn-primary"
+    - if !@video.new_record?
+      = link_to "Refresh", refresh_video_path(@video), class: 'btn btn-info', method: :put

@@ -1,0 +1,2 @@
+$('#modal-playlists #playlists').html('#{escape_javascript render 'selection'}');
+$('#modal-playlists #paginator').html('#{escape_javascript(paginate(@playlists, :remote => true).to_s)}');

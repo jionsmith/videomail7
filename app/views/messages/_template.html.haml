@@ -1,0 +1,5 @@
+%li
+  = link_to "#", class: "sample-template", "data-template-title" => template.title, "data-template-id" => template.id do
+    = image_tag template.preview_image.thumb.url, class: "template-thumb pull-left", style: "max-width: 100px;"
+    %span.pull-left= template.title
+    %span.clearfix

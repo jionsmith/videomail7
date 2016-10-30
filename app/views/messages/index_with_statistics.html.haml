@@ -1,0 +1,23 @@
+#messages
+  .box-header
+    = link_to "<span class='glyphicon glyphicon-envelope'></span> New videomail".html_safe, new_message_path, class: "btn btn-primary pull-right"
+    %h2
+      %span.glyphicon.glyphicon-envelope
+      Videomails
+  .box-body
+    = render 'messages/tabs'
+    .table-responsive
+      %table.table.table-statistics
+        %tbody
+          %thead
+            %th Title
+            %th Email
+            %th{title: 'Last read date'} Read date (System)
+            %th{title: 'Last read time'} Read time (System)
+            %th{title: 'Last read date'} Read date (Local)
+            %th{title: 'Last read time'} Read time (Local)
+            %th Read
+          - @messages.each do |message|
+            = render 'message_with_statistics', message: message
+
+      = paginate(@messages)

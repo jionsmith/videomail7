@@ -1,0 +1,45 @@
+%h2 Change your password
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+  %div
+    = f.label :password, "New password"
+    %br/
+    = f.password_field :password, autofocus: true, autocomplete: "off"
+  %div
+    = f.label :password_confirmation, "Confirm new password"
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "off"
+  %div= f.submit "Change my password"
+= render "devise/shared/links"
+
+
+.container-fluid.login
+  .container
+    .col-xs-12.col-sm-12.col-md-7.col-lg-8
+      = image_tag 'login_teaser.png', class: 'img-responsive'
+      %h2 A video email says more than a thousand words
+      %p
+        Finally, send video in email. Embed video in email and communicate your message perfectly personal. Bring messages to life, drive higher recipient engagement,
+        and increase video views with your own fully embedded videomail. Record your own video directly from videomail7.
+    .col-xs-12.col-sm-12.col-md-5.col-lg-4
+      .well.no-padding
+        .header
+          %h2 Change your password
+        .wellform
+          = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+            = devise_error_messages!
+            = f.hidden_field :reset_password_token
+            %div
+              = f.label :password, "New password"
+              %br/
+              = f.password_field :password, autofocus: true, autocomplete: "off"
+            %div
+              = f.label :password_confirmation, "Confirm new password"
+              %br/
+              = f.password_field :password_confirmation, autocomplete: "off"
+            %div= f.submit "Change my password"
+
+
+          .shared_links_extern
+            = render 'devise/shared/links'

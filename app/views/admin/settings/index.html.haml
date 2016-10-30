@@ -1,0 +1,7 @@
+= bootstrap_form_for([:admin, Setting.object_by('root_category')], layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
+  %h3 Category
+  = f.hidden_field :key
+  = f.select :value, [['Please select a category', '']] + Category.select_options, label: 'Root category'
+
+  = f.form_group do
+    = f.submit "Save", class: 'btn btn-primary'

@@ -1,0 +1,142 @@
+- @message.play = 'video' if @message.play.blank?
+
+= bootstrap_form_for(@message, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-10') do |f|
+  = f.text_field :emails, class: 'form-control typeahead', placeholder: 'Emails separeted by ,'
+  - if @message.video && @message.subject.blank?
+    = f.text_field :subject, class: 'form-control', value: @message.video.title
+  - else
+    = f.text_field :subject, class: 'form-control', placeholder: 'Give a Title'
+  = f.form_group do
+    = f.bootsy_area :text, class: 'form-control', rows: 6, placeholder: 'Write your message'
+  = f.form_group do
+    .input-group
+      .input-group-btn
+        = link_to selection_templates_path, class: 'btn btn-default dropdown-toggle', "data-target" => "#modal-templates", "data-toggle" => "modal" do
+          %span.caret
+
+        %input.form-control.sample-template-text{:type => 'text', :value => f.object.try(:template).try(:title), :placeholder => 'Please choose a template', style: 'padding-left: 40px;'}
+        = f.hidden_field :template_id
+
+  - if current_account.can_use_video_playlist?
+    = f.form_group :play, label: { text: 'Play' } do
+      = f.radio_button :play, 'video', label: 'Single video', inline: true
+      = f.radio_button :play, 'list', label: 'Playlist', inline: true
+
+    = f.form_group class: 'playlists-group', style: 'display: none' do
+      .input-group
+        .input-group-btn
+          = link_to selection_playlists_path, class: 'btn btn-default dropdown-toggle', "data-target" => "#modal-playlists", "data-toggle" => "modal" do
+            %span.caret
+
+          %input.form-control.sample-playlist-text{:type => 'text', :value => f.object.try(:playlist).try(:title), :placeholder => 'Please choose a playlist', style: 'padding-left: 40px;'}
+          = f.hidden_field :playlist_id
+
+  = f.form_group class: 'videos-group', style: 'display: none' do
+    .input-group
+      .input-group-btn
+        = link_to selection_videos_path, class: 'btn btn-default dropdown-toggle', "data-target" => "#modal-videos", "data-toggle" => "modal" do
+          %span.caret
+
+        %input.form-control.sample-video-text{:type => 'text', :value => f.object.try(:video).try(:title), :placeholder => 'Please choose a video', style: 'padding-left: 40px;'}
+        = f.hidden_field :video_id
+
+  = f.form_group do
+    = f.check_box :downloadable, hide_label: true do
+      Allow recipient to download?
+
+  = f.form_group do
+    = f.check_box :email_type, hide_label: true do
+      Send at scheduled time?
+  #send_at
+    = f.datetime_select :send_at, disabled: !@message.draft?, help: current_time_zone
+  = f.form_group do
+    - if @message.new_record? or @message.draft?
+      = f.submit 'Save', class: 'btn btn-primary'
+      = f.submit 'Send', class: 'btn btn-info'
+    %br
+
+#modal-templates.modal.fade{:role => "dialog"}
+  .modal-dialog.modal-lg
+    .modal-content
+
+#modal-playlists.modal.fade{:role => "dialog"}
+  .modal-dialog.modal-lg
+    .modal-content
+
+#modal-videos.modal.fade{:role => "dialog"}
+  .modal-dialog.modal-lg
+    .modal-content
+      
+:javascript
+  var select_template = function(template) {
+    $(".sample-template-text").val(template.title);
+    $("#message_template_id").val(template.id);
+    $('#modal-templates').modal('hide');
+  }
+
+  var select_video = function(video) {
+    $(".sample-video-text").val(video.title);
+    $("#message_video_id").val(video.id);
+    $('#modal-videos').modal('hide');
+  }
+
+  var select_playlist = function(playlist) {
+    $(".sample-playlist-text").val(playlist.title);
+    $("#message_playlist_id").val(playlist.id);
+    $('#modal-playlists').modal('hide');
+  }
+
+  var update_select_group = function() {
+    var val = $('input[name="message[play]"]:checked').val();
+    var show_list = (val == 'list');
+    if (show_list){
+      $('.playlists-group').show();
+      $('.videos-group').hide();
+    }else{
+      $('.playlists-group').hide();
+      $('.videos-group').show();
+    }
+  }
+
+  function update_email_type(){
+    if($('#message_email_type').is(":checked")){
+      $('#send_at').show();
+    }else{
+      $('#send_at').hide();
+    }
+  }
+
+  $('#message_email_type').on('click', function(){
+    update_email_type();
+  });
+
+  update_email_type();
+
+
+= content_for :javascript do
+  :javascript
+    $(function(){
+      // Select play type
+      $('input[name="message[play]"]').on('change', update_select_group);
+      update_select_group();
+
+      var remote_url = "#{contacts_messages_path + '?query=%QUERY' }";
+      var contactList = new Bloodhound({
+        datumTokenizer:  Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: remote_url
+      });
+
+      contactList.initialize();
+      var tokenField = $('.typeahead').tokenfield({
+        createTokensOnBlur: true,
+        typeahead: {
+          source: contactList.ttAdapter(),
+          templates: {
+            suggestion: function(token){
+              return "" + token.fullname + " – " + token.value + "";
+            }
+          }
+        }
+      });
+    });

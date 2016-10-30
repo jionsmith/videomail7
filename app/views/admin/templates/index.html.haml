@@ -1,0 +1,14 @@
+%p.text-right
+  = link_to "New Template", new_admin_template_path, class: "btn btn-primary"
+%table.table
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Premium
+      %th Price
+      %th Created at
+      %th Updated at
+      %th
+  %tbody
+    = render @templates

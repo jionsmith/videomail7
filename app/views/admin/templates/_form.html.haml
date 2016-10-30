@@ -1,0 +1,49 @@
+= bootstrap_form_for [:admin, @template], layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10" do |f|
+  %hr
+  %h4 Template Info
+  = f.text_field :title, class: "form-control", placeholder: "Give a Title"
+  = f.text_field :text_example, class: "form-control", placeholder: "Give a Text Example"
+  = f.form_group do
+    = f.check_box :premium_template
+
+  = f.file_field :preview_image
+  = f.hidden_field :preview_image_cache
+  - if @template.preview_image?
+    = f.form_group do
+      = link_to @template.preview_image.url, target: '_blank' do
+        = image_tag @template.preview_image.thumb.url
+      = f.check_box :remove_preview_image
+
+  = f.file_field :content_file
+  = f.hidden_field :content_file_cache
+  - if @template.content_file?
+    = f.form_group do
+      = link_to @template.content_file.url, @template.content_file.url, target: '_blank'
+
+  %h4 Template Images
+  #template_images
+    = f.fields_for :template_images do |template_image|
+      = render 'template_image_fields', f: template_image
+    .links
+      = link_to_add_association 'add image', f, :template_images
+
+  %hr
+  - unless @videos.blank?
+    %h4 Sample Video
+    = f.form_group do
+      = collection_radio_buttons(:template, :video_id, @videos, :id, :screenshot) do |b| 
+        .col-sm-2
+          .radio
+            = b.label do 
+              = b.radio_button
+              = image_tag(b.object.screenshot, class: 'img-responsive')
+  %hr
+
+  %h4 Product Information
+  = f.fields_for :product, @template.product do |product|
+    = product.text_field :price, class: "form-control"
+    = product.select :status, Product::STATUS, {}, class: "form-control"
+
+  %hr
+  = f.form_group do
+    = f.submit "Save", class: "btn btn-primary"

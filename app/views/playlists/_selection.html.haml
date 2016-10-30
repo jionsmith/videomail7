@@ -1,0 +1,17 @@
+- @playlists.each_with_index do |playlist, i|
+  .col-md-3.template
+    .previewimg
+      - if playlist.screenshot
+        = image_tag playlist.screenshot
+      - else
+        = image_tag '140x140-default.png'
+    .template-title
+      %h4= truncate(playlist.title, length: 20)
+    .row
+      .template-meta.col-md-12
+        = link_to "#", class: 'btn btn-primary', "onclick"=>"select_playlist(#{playlist.to_json});" do
+          %span.glyphicon.glyphicon-eye-open
+          %span Select
+
+  - if (i+1) % 4 == 0
+    .clearfix

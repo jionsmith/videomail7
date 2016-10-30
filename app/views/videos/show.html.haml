@@ -1,0 +1,7 @@
+%video#movie{:controls => "", :height => "auto", :poster => @video.screenshots.first, :preload => "none", :width => "100%", :autoplay=> true}
+  %source{:src => @video.h264_url, :type => "video/mp4"}
+  %source{:src => @video.ogg_url, :type => "video/ogg"}
+
+- if @message.downloadable
+  %p.download.text-center
+    = link_to "Download - #{@video.title}", download_video_path(@video, token: params[:token])

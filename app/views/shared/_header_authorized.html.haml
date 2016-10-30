@@ -1,0 +1,121 @@
+%nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"}
+        = image_tag('logo_intern.png')
+
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li{:class => filter_links_class(/\/videos/, main_app.root_url)}
+          = link_to "Videos", main_app.videos_path
+        - if current_account.try :can_use_video_playlist?
+          %li{:class => filter_links_class(/\/playlist/)}
+            = link_to "Playlists", main_app.playlists_path
+        %li{:class => filter_links_class(/\/messages/)}
+          = link_to "Videomails", main_app.messages_path
+        %li{:class => filter_links_class(/\/templates/)}
+          = link_to "Templates", main_app.templates_path
+        -# %li.disabled{:class => filter_links_class(/\/addressbook/)}
+          -# = link_to "Addressbook", "javascript:void(0)", title: "Coming soon..."
+        -# %li.disabled{:class => filter_links_class(/\/payments/)}
+          -# = link_to "Payments", "javascript:void(0)", title: "Coming soon..."
+        %li.dropdown
+          %a#profiletoggle{:href => "#"}
+            %span.icon-user
+            %span.toggle-title Profile
+            %span.toggle-icon.glyphicon.glyphicon-circle-arrow-down
+        %li
+          = link_to "<span class='glyphicon glyphicon-off'></span>".html_safe, main_app.destroy_account_session_path, :method => 'delete', :title => 'Logout'
+    / /.navbar-collapse
+  / /.container-fluid
+/ Profile row
+#profile.container-fluid
+  .col-xs-12.col-sm-6
+    / profileimage
+    .col-xs-5.col-sm-5.col-md-5.col-lg-4
+      .profileimg
+        = image_tag('nouserimage.jpg', class: 'img-responsive img-circle')
+        // %a{:alt => "change profile image", :href => "#"}
+        //  %span.glyphicon.glyphicon-picture
+        //  %span.txt Change Image
+        .clearfix
+    / Welcometext
+    .col-xs-7.col-sm-6.col-md-6.col-lg-8.welcome
+      %h1.bob
+        %span.small Welcome
+        = succeed "#{current_account.first_name}," do
+          %br/
+        = current_account.last_name
+        -#%p Welcome text... news, features etc. ein netter kleiner Wohlfühltext, eventuell textlich andere Produkte anteasern... haben sie schon dies und das probiert?
+
+  / current package, settinglinks
+  .col-xs-12.col-sm-6.bgcolor.profilesettings
+    .actions
+      .col-xs-6.bor
+        %a{:href => edit_account_registration_path}
+          %span.glyphicon.glyphicon-user
+          Profile Setting
+      .col-xs-6
+        %a{:href => orders_path}
+          %span.glyphicon.glyphicon-credit-card
+          Payment
+    %table.table.table-condensed
+      %tr
+        %td Company:
+        %td - none -
+      %tr
+        %td Account:
+        %td
+          = current_account.current_plan.name
+          user
+      %tr
+        %td e-Mail:
+        %td= current_account.email
+      %tr
+        %td
+          %strong Your promolink:
+        %td
+          - if current_account.promotion_code.present?
+            = promolink_url(referrer_code: current_account.promotion_code)
+          - else
+            \-
+/ Profile End
+
+-#.navbar.navbar-fixed-top.navbar-inverse{:role => "navigation"}
+-#  .container
+-#    .navbar-header
+-#      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+-#        %span.sr-only Toggle navigation
+-#        %span.icon-bar
+-#        %span.icon-bar
+-#        %span.icon-bar
+-#      %a.navbar-brand{:href => "/"}
+-#        = image_tag 'logo.png'
+-#        %span BETA
+-#    - if account_signed_in?
+-#      .collapse.navbar-collapse
+-#        %ul.nav.navbar-nav.navbar-right
+-#          %li{:class => filter_links_class(/\/videos/, main_app.root_url)}
+-#            = link_to "Videos", main_app.videos_path
+-#          %li{:class => filter_links_class(/\/playlist/)}
+-#            = link_to "Playlists", main_app.playlists_path
+-#          %li{:class => filter_links_class(/\/messages/)}
+-#            = link_to "Messages", main_app.messages_path
+-#          %li.disabled{:class => filter_links_class(/\/addressbook/)}
+-#            = link_to "Addressbook", "javascript:void(0)", title: "Coming soon..."
+-#          %li{:class => filter_links_class(/\/templates/)}
+-#            = link_to "Templates", main_app.templates_path
+-#          %li{:class => filter_links_class(/\/products/)}
+-#            = link_to "Buy", main_app.products_path
+-#          %li.disabled{:class => filter_links_class(/\/payments/)}
+-#            = link_to "Payments", "javascript:void(0)", title: "Coming soon..."
+-#          %li
+-#            = link_to "<span class='glyphicon glyphicon-log-out'></span>".html_safe, main_app.destroy_account_session_path, :method => 'delete', :title => 'Logout'
+

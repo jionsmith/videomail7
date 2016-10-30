@@ -1,0 +1,100 @@
+/*
+*= require bootsy
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "colors";
+@import "base";
+@import "playlists";
+
+#template-view {
+  margin: -19px;
+  padding: 0 !important;
+
+  .btn-back {
+    background: rgba($dark, .9);
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    border: 1px solid $grey5;
+    color: $light;
+    padding: 10px 20px;
+
+    &:hover {
+      border: 1px dotted $grey5;
+    }
+  }
+
+  .template-header {
+    background-color: $light;
+    margin-bottom: 20px;
+
+    a {
+      padding: 20px;
+      display: inline-block;
+    }
+    .template-logo {
+      padding-left: 0;
+    }
+  }
+  .template-body {
+    table {
+      margin: 0;
+    }
+    .template-sidebar {
+
+      .sidebar-elem {
+        color: #666;
+
+        a {
+          padding: 50px;
+          display: block;
+          background: $light;
+          @include transition(all 500ms ease-out);
+
+          &:hover {
+            background: $primary;
+            color: $light;
+
+            span,
+            .sidebar-icon {
+              color: $light;
+            }
+          }
+        }
+
+        span {
+          color: $grey3;
+          font-weight: 400;
+          text-align: center;
+          display: block;
+          font-size: 1em;
+
+          &.regnow {
+            font-size: 2em;
+            color: $grey2;
+          }
+        }
+        .sidebar-icon {
+          color: $grey3;
+          display: block;
+          font-size: 10em;
+          line-height: .9em;
+          text-align: center;
+          margin-bottom: 10px;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.play-icon-wrapper{
+  text-align: center;
+  position: relative;
+  img.play-icon{
+    margin-left: -40px;
+    position: absolute;
+    bottom: 200px;
+  }
+}

@@ -1,0 +1,12 @@
+.box-header
+  %h2.pull-left
+    %span.glyphicon.glyphicon-th
+    Your playlists
+
+  %button.btn.btn-default.pull-right{"data-dismiss" => "modal", :type => "button"} X
+.box-body
+  .row
+    #playlists
+      = render 'selection'
+  #paginator
+    = paginate @playlists, :remote => true

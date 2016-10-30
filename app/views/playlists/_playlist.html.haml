@@ -1,0 +1,18 @@
+%tr
+  %td= image_tag playlist.screenshot, style: "max-width: 100px;"
+  %td=playlist.title
+  %td=playlist.videos.count
+  %td=playlist.created_at
+  %td.text-right
+    .btn-group.actions
+      = link_to playlist_path(playlist), title: "Show" do
+        %span.glyphicon.glyphicon-eye-open
+
+      = link_to edit_playlist_path(playlist), title: "Edit" do
+        %span.glyphicon.glyphicon-pencil
+      
+      = link_to playlist_path(playlist), data: { confirm: "Are you sure to delete?"}, method: :delete, title: "Delete" do
+        %span.glyphicon.glyphicon-trash
+
+      = link_to new_message_path(playlist_id: playlist.id), title: "Create message"  do
+        %span.glyphicon.glyphicon-envelope

@@ -1,0 +1,63 @@
+#products
+  .box-header
+    %h2
+      %span.glyphicon.glyphicon-facetime-video
+      Products
+
+  .box-body
+    .row
+      - @products.each_with_index do |product, i|
+        .col-md-3.template
+          .previewimg
+            = link_to product_path(product) do
+              - if product.parent_object.try :preview_image?
+                = image_tag product.parent_object.preview_image.thumb.url
+              - else
+                = image_tag 'nouserimage.jpg'
+
+          .template-title
+            %h4= truncate(product.parent_object.product_name, length: 20)
+          -#.template-desc
+          -#  %p= product.parent_object.description
+          .row
+            .template-meta.col-md-12
+              - if product.is_template?
+                = link_to '#', class: "btn btn-primary col-md-3", "data-target" => "#modal", "data-toggle" => "modal", "onclick"=>"changeTemplatePreview('#{template_path(product.parent_object)}', '#{product_path(product)}');" do
+                  %span.glyphicon.glyphicon-eye-open
+
+              - if current_account.products.include?(product)
+                = link_to product_path(product), class: 'btn btn-success col-md-8 col-md-offset-1' do
+                  %span.glyphicon.glyphicon-ok
+                  %span Purchased
+
+              - else
+                - if product.is_free?
+                  = link_to add_to_user_product_path(product), class: 'btn btn-default col-md-8 col-md-offset-1', method: :put do
+                    - if product.productable.premium_template
+                      PREMIUM
+                    - else
+                      FREE
+                      
+                - else
+                  = link_to '#', class: 'btn btn-default col-md-8 col-md-offset-1', disabled: true do
+                    Buy for
+                    = humanized_money_with_symbol(product.price)
+        - if (i+1) % 4 == 0
+          .clearfix
+  = paginate @products
+
+%div.modal.fade{id: "modal", :role => "dialog"}
+  .modal-dialog.modal-lg
+    %button#btn-template-preview-close.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+    .modal-content
+      %iframe#iframe{width: '100%', height:'200px', noborder: true, style: 'border:none;'}
+      
+:javascript
+  function changeTemplatePreview(template_path, product_path){
+    $('#iframe')[0].contentWindow.document.open().write('Loading...');
+    $('#iframe').attr('src', template_path);
+    $('#iframe').load(function(){
+      //$('#iframe')[0].height = $('#iframe')[0].contentWindow.document.body.scrollHeight;
+      $('#iframe')[0].height = $(window).height()-100;
+    });
+  }

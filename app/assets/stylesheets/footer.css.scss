@@ -1,0 +1,30 @@
+footer {
+  text-align: left;
+  padding: 10px 0 15px;
+  
+
+  ul.footer-nav {
+    list-style: none;
+    padding-left: 0;
+    color: $grey5;
+
+    li {
+      display: inline;
+      color: $grey5;
+      font-weight: 300;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a:link, a:visited {
+        color: $grey5;
+      }
+      a:hover, a:active {
+        color: $primary;
+      }
+
+    }
+  }
+}

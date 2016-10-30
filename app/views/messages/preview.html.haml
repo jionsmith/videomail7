@@ -1,0 +1,11 @@
+- if !@playlist.blank?
+  = image_tag @playlist.screenshot, class: 'img-responsive'
+  .play-icon-wrapper
+    = image_tag 'play_icon.png', class: 'play-icon'
+- if !@video.blank?
+  = image_tag @video.screenshot, class: 'img-responsive'
+  .play-icon-wrapper
+    = image_tag 'play_icon.png', class: 'play-icon'
+  - if @message.downloadable
+    %p.download.text-center
+      = link_to "Download - #{@video.title}", download_video_path(@video, token: params[:token])

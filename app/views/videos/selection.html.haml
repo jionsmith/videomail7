@@ -1,0 +1,12 @@
+.box-header
+  %h2.pull-left
+    %span.glyphicon.glyphicon-th
+    Your videos
+
+  %button.btn.btn-default.pull-right{"data-dismiss" => "modal", :type => "button"} X
+.box-body
+  .row
+    #videos
+      = render 'selection'
+  #paginator
+    = paginate @videos, :remote => true

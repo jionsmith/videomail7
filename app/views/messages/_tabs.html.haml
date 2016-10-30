@@ -1,0 +1,8 @@
+= tabs_tag :open_tabs=>{ class: 'nav nav-tabs' } do |tab|
+  = tab.all "All", messages_path
+  = tab.sent "Sent", messages_path(status: 'sent')
+  = tab.delayed "Scheduled", messages_path(status: 'delayed')
+  = tab.draft "Draft", messages_path(status: 'draft')
+  = tab.trash "Trash", messages_path(status: 'trash')
+  - if current_account.can_see_statistics?
+    = tab.statistics "Statistics", messages_path(statistics: true)

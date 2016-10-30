@@ -1,0 +1,2 @@
+$('#modal-videos #videos').html('#{escape_javascript render 'selection'}');
+$('#modal-videos #paginator').html('#{escape_javascript(paginate(@videos, :remote => true).to_s)}');

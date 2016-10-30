@@ -1,0 +1,53 @@
+<% if !current_account.current_plan.video_duration_limit.blank? && current_account.current_plan.video_duration_limit > 0 %>
+  <div class="alert alert-warning" id="notification">Free user couldn't send <%= current_account.current_plan.video_duration_limit/1000 %>+ seconds video mail.</div>
+<% end %>
+
+<div class="recorder-container">
+  <div id="flashContent" >
+  </div>
+</div>  
+<div class="recorder-body">
+  <p class="ui-hint text-center">Click on the red record button to start your recording.</p>
+  <%= form_for @video, html: { role: "form" } do |f| %>
+    <%= f.hidden_field :stream_name %>
+    <%= f.submit "Use video", class: "btn btn-primary btn-lg btn-block"%>
+  <% end %>
+</div>
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    var flashvars = {
+      userId : "XXY",
+      qualityurl: "/audio_video_quality_profiles/wide/640x360x30x90.xml",
+      recorderId: "123",
+      sscode: "json"
+    };
+    var params = {
+      quality : "high",
+      bgcolor : "#000000",
+      play : "true",
+      loop : "false",
+      allowscriptaccess: "localhost"
+    };
+    var attributes = {
+      name : "VideoRecorder",
+      id :   "VideoRecorder",
+      align : "middle"
+    };
+
+
+    swfobject.embedSWF("VideoRecorder.swf", "flashContent", "650", "450", "10.3.0", "", flashvars, params, attributes);
+
+    function onUploadDone(streamName, streamDuration, userId, recorderId, audioCodec, videoCodec, fileType){
+      if(streamDuration > 30){
+        $('#notification').fadeIn();
+      }
+    }
+
+    $(function(){
+      $("input:submit").on("click", function(event){
+        $("#video_stream_name").val(document.VideoRecorder.getStreamName());
+        $("form").submit();
+      });
+    });
+  </script>
+<% end %>

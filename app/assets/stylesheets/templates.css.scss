@@ -1,0 +1,66 @@
+.categorys {
+  margin: 10px 0;
+
+  a {
+
+    &.label {
+      background: transparent;
+      border: 1px solid $grey6;
+      display: inline-block;
+      font-size: 1em;
+      font-weight: 300;
+      margin: 2px;
+      padding: 7px;
+      @include transition(all 300ms ease);
+      white-space: normal;
+      color: $grey5;
+
+      &:hover {
+        background: $primarybg;
+        color: $light;
+        border: 1px solid $grey6;
+      }
+    }
+  }
+}
+
+#modal {
+
+  .modal-content {
+
+    .preview-add {
+      background: rgba($dark, .9);
+      border: 1px solid $grey1;
+      left: 20px;
+      position: fixed;
+      top: 20px;
+    }
+
+    #btn-template-preview-close {
+      background: rgba($dark, .9);
+      border: 1px solid $grey1;
+      right: 20px;
+      position: fixed;
+      top: 20px;
+      opacity: .3;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+}
+
+#related-products {
+  background: rgba($dark, .9);
+  padding: 40px;
+
+  h3 {
+    margin-bottom: 30px;
+  }
+  .template {
+    margin: 10px;
+    min-height: 340px;
+  }
+}

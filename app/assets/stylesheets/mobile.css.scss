@@ -1,0 +1,52 @@
+@media screen and (max-width: 360px) {
+  .navbar {
+
+    .navbar-brand {
+
+      img {
+        height: 50px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 780px) {
+  .navbar {
+
+
+    ul.navbar-nav {
+      height: auto ;
+    }
+
+    .navbar-brand {
+      display: inline-block;
+    }
+
+    .container {
+      background-color: $light;
+    }
+    .navbar-collapse.in {
+      margin-top: 70px;
+    }
+    .navbar-toggle {
+
+      .icon-bar {
+        background-color: $grey3;
+      }
+      &:hover {
+        background: $secondarybg;
+
+        .icon-bar {
+          background-color: $light;
+        }
+      }
+    }
+  }
+  .playlist-video {
+    width: 100%!important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .playlist-video {
+    width: 50%;
+  }
+}

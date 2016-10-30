@@ -1,0 +1,17 @@
+- @templates.each_with_index do |template, i|
+  .col-md-3.template
+    .previewimg
+      - if template.preview_image?
+        = image_tag template.preview_image.thumb.url
+      - else
+        = image_tag '140x140-default.png'
+    .template-title
+      %h4= truncate(template.title, length: 17)
+    .row
+      .template-meta.col-md-12
+        = link_to "#", class: 'btn btn-primary', "onclick"=>"select_template(#{template.to_json});" do
+          %span.glyphicon.glyphicon-eye-open
+          %span Select
+
+  - if (i+1) % 4 == 0
+    .clearfix

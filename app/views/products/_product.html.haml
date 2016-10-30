@@ -1,0 +1,14 @@
+%tr{ class: "#{'purchased' if current_account.has_product?(product) }"}
+  %td= product.parent_object.product_name
+  %td= product.productable_type
+  %td= humanized_money_with_symbol(product.price)
+  %td
+  %td
+    - if product.is_package?
+      = product.parent_object.templates.count
+  %td
+    - if current_account.products.include?(product)
+      Purchased
+  %td.text-right
+    = link_to product_path(product) do
+      %span.glyphicon.glyphicon-eye-open

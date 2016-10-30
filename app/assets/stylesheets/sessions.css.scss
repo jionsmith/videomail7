@@ -1,0 +1,76 @@
+.login{
+  	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.85);
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    padding-bottom: 20px;
+    padding-top: 20px;
+	
+	
+
+	.well {
+  	padding:0;
+	
+		.baio-login a:link, .baio-login a:visited {
+	  		display: block;
+	  		text-align: center;
+	  		-webkit-border-radius: 3px;
+			border-radius: 3px;
+		  border: none;
+		  font-size: 1.15em;
+		  text-shadow: none;
+		  color: #FFF;
+		  background: #232937; 
+		  padding: 7px;
+		  margin-top: 10px;
+		  
+		  	span{
+  				color:#cb2e19;
+			}
+		  
+		}
+		
+		.baio-login a:hover{
+	    color: #FFF;
+	  	background: #cb2e19; 
+	  			  
+		  	span{
+  				color:#232937;
+			}
+		}
+		
+		h2{
+				padding: 0 0 0 15px;
+				font-weight: normal;
+		}
+	}
+		
+	.wellform{
+  	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+    border: 0 none;
+    display: block;
+    padding: 25px 14px;
+    position: relative
+    }
+}
+
+
+body.extern footer{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) { 
+	body.extern footer{
+		position: relative;	  
+	}
+}
+#new_account {
+  margin-bottom: 10px;
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+}

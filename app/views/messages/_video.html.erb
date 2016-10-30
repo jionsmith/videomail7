@@ -1,0 +1,7 @@
+<li>
+<%= link_to "#", class: "sample-video", "data-video-title" => video.title, "data-video-id" => video.id do %>
+  <%= image_tag video.screenshot, class: "video-thumb pull-left"  %>
+  <span class="pull-left"><%= video.title %></span>
+  <span class="clearfix"></span>
+<% end %>
+</li>

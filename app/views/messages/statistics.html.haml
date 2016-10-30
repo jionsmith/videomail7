@@ -1,0 +1,16 @@
+.modal-header
+  %h3 Statistics
+.modal-body.statistics
+  - @message.emails_to_a.each do |email|
+    %h4
+      = email
+      have read
+      = pluralize(@message.access_logs.by_email(email).count, 'time')
+
+    %ul
+      - @message.access_logs.by_email(email).each do |log|
+        %li
+          = "#{log.accessed_at}"
+      
+.modal-footer
+  %button.btn.btn-default.pull-right{"data-dismiss" => "modal", :type => "button"} Close

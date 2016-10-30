@@ -1,0 +1,55 @@
+#new-playlist {
+
+  .playlist-example {
+    border: 1px solid $grey6;
+    max-width: 200px;
+    min-height: 210px;
+    padding: 10px;
+  }
+  .playlist-outro {
+
+    textarea {
+      padding: 20px;
+    }
+  }
+}
+
+#player{
+  position: relative;
+  
+  .outro{
+    display: none;
+  }
+
+  &.ended{
+    .outro{
+      display: block;
+    }
+  }
+
+  .outro{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 1rem;
+    color: #fff;
+    font-size: 2em;
+    line-height: 100%;
+    background: rgba(0,0,0, 0.9);
+    text-align: center;
+
+    padding: 3rem;
+    overflow:hidden
+
+    div{
+      line-height: 10em;
+      text-align: center;
+      span{
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+%p.text-right
+  = link_to "New Category", new_admin_category_path, class: "btn btn-primary"
+
+%table.table
+  %thead
+    %tr
+      %th
+        Category
+      %th
+        Products
+      %th
+        Default
+      %th
+        &nbsp;
+  - Category.walk_tree do |category, level|
+    %tr
+      %td
+        %div{:class => "depth#{level}" }
+          %span.glyphicon.glyphicon-folder-open
+            = category.name
+      %td
+        = category.products.count
+      %td
+        = category.default if category.default
+      %td
+        .text-right
+          .btn-group
+            = link_to edit_admin_category_path(category), class: 'btn btn-info' do
+              %span.glyphicon.glyphicon-edit
+            = link_to admin_category_path(category), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure to delete?'} do
+              %span.glyphicon.glyphicon-trash

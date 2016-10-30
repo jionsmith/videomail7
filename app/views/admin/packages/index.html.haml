@@ -1,0 +1,27 @@
+.text-right
+  = link_to "New Package", new_admin_package_path, class: "btn btn-primary"
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Templates
+      %th Created at
+      %th Updated at
+      %th
+  %tbody
+    - @packages.each do |package|
+      %tr
+        %td
+          = package.name
+        %td
+          = package.templates.count
+        %td
+          = package.created_at
+        %td
+          = package.updated_at
+        %td.text-right
+          .btn-group
+            = link_to edit_admin_package_path(package), class: "btn btn-info" do
+              %span.glyphicon.glyphicon-edit
+            = link_to admin_package_path(package), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure to delete?'} do
+              %span.glyphicon.glyphicon-trash

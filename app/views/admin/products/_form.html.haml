@@ -1,0 +1,32 @@
+- if @product.productable
+  %h3
+    = @product.productable.product_name
+    = "(#{@product.productable_type})"
+  %br
+.row
+  .col-sm-3
+    %table.table.categories
+      - Category.walk_tree do |category, level|
+        %tr{ class: "#{'alert-success' if @product.categories.include?(category)}" }
+          %td
+            %div{:class => "depth#{level}" }
+              %span.glyphicon.glyphicon-folder-open
+                = category.name
+          %td
+            .text-right
+              .btn-group
+                - unless @product.categories.include?(category)
+                  = link_to add_category_admin_product_path(@product, category: category), method: :put, class: 'btn btn-info btn-sm' do
+                    %span.glyphicon.glyphicon-plus
+                - else
+                  = link_to remove_category_admin_product_path(@product, category: category), method: :put, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure to delete?'} do
+                    %span.glyphicon.glyphicon-minus
+  .col-sm-9
+
+    = bootstrap_form_for([:admin, @product], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+      = f.text_field :price
+      = f.select :status, Product::STATUS
+
+      = f.form_group do
+        = f.submit "Save", class: 'btn btn-primary'
+        = link_to "Delete", admin_product_path(@product), method: :delete, class: 'btn btn-danger'

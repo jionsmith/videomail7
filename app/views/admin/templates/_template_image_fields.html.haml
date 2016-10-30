@@ -1,0 +1,14 @@
+.nested-fields
+  = f.text_field :image_name
+
+  = f.file_field :image_file
+  = f.hidden_field :image_file_cache
+
+  - if f.object.image_file?
+    = f.form_group do
+      = link_to f.object.image_file.url, target: '_blank' do
+        = image_tag f.object.image_file.thumb.url
+      -#= f.check_box :remove_image_file
+
+  = f.form_group do
+    = link_to_remove_association 'Remove image', f

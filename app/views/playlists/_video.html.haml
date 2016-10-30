@@ -1,0 +1,10 @@
+.col-sm-3.playlist-video
+  %p
+    = image_tag video.screenshot, style: "max-height: 100px;"
+  %p
+    = truncate(video.title, length: 25)
+  %p
+    - if @playlist.videos.include?(video)
+      = link_to "Remove from playlist", remove_video_playlist_path(@playlist, video_id: video.id), data:{ method: :put, confirm: "Are you sure to remove?" }, class: 'btn btn-danger'
+    - else
+      = link_to "Add to playlist", add_video_playlist_path(@playlist, video_id: video.id), data:{ method: :put }, class: 'btn btn-primary'

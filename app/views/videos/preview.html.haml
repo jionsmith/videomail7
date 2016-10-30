@@ -1,0 +1,17 @@
+.box-header
+  %h2= @video.title
+.box-body.text-center
+  - if @video.encoded
+    %video#movie{:controls => '', :height => 'auto', :poster => @video.screenshots.first, :preload => 'none', :width => '600'}
+      %source{:src => @h264_encoding.url, :type => 'video/mp4'}
+      %source{:src => @ogg_encoding.url, :type => 'video/ogg'}
+  - else
+    = image_tag 'encoding.jpg', class: 'img-responsive', style: 'max-height: 200px'
+
+  .footerline
+  .text-right
+    = link_to 'Back', :back, class: 'btn btn-back btn-info'
+    - if @video.encoded
+      = link_to 'Send this as videomail now', new_message_path(video_id: @video.id), class: 'btn btn-primary'
+    - else
+      = link_to 'Refresh', refresh_video_path(@video), class: 'btn btn-info', method: :put

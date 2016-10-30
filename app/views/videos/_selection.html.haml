@@ -1,0 +1,17 @@
+- @videos.each_with_index do |video, i|
+  .col-md-3.template
+    .previewimg
+      - if video.screenshot
+        = image_tag video.screenshot
+      - else
+        = image_tag '140x140-default.png'
+    .template-title
+      %h4= truncate(video.title, length: 20)
+    .row
+      .template-meta.col-md-12
+        = link_to "#", class: 'btn btn-primary', "onclick"=>"select_video(#{video.to_json});" do
+          %span.glyphicon.glyphicon-eye-open
+          %span Select
+
+  - if (i+1) % 4 == 0
+    .clearfix

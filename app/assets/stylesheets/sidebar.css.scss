@@ -1,0 +1,30 @@
+#sidebar {
+  .list-group-item {
+    @include border-radius(0);
+    @include transition(all 300ms ease-in);
+    margin-bottom: 3px;
+
+    &:hover {
+      color: $light;
+      background-color: $primarybg;
+    }
+  }
+  span {
+      font-weight: 100;
+      font-size: 3em;
+      display: block;
+      margin-bottom: 10px;
+  }
+  
+  a{
+      display: block;
+      margin-bottom: 10px;
+      padding-top: 25px;
+      padding-bottom: 25px;
+      text-transform: uppercase;
+	}
+  .uploadvideo {
+  }
+  .recordvideo {
+  }
+}

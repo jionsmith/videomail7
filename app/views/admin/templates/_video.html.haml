@@ -1,0 +1,4 @@
+%li
+  = link_to "#", class: "sample-video", "data-video-title" => video.title, "data-video-id" => video.id do
+    %span= video.title
+    = image_tag video.screenshot, class: "video-thumb pull-left"

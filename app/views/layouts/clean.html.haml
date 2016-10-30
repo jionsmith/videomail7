@@ -1,0 +1,15 @@
+!!!
+%html{:lang => "en", :style => "margin: 20px"}
+  %head
+    = render 'shared/meta_tags'
+    %title Video Email 7
+    = stylesheet_link_tag    "admin", media: "all", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    = render "shared/flashes"
+    .row
+      .col-xs-12
+        = yield
+
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = yield :javascript

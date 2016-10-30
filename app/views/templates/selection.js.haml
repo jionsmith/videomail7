@@ -1,0 +1,2 @@
+$('#modal-templates #templates').html('#{escape_javascript render 'selection'}');
+$('#modal-templates #paginator').html('#{escape_javascript(paginate(@templates, :remote => true).to_s)}');

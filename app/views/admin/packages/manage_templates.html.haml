@@ -1,0 +1,25 @@
+%p.text-right
+  = link_to '#', class: "btn btn-danger", onclick: "window.opener.closeTemplateManageWindow();" do
+    %span.glyphicon.glyphicon-remove
+      Close Window
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Text example
+      %th
+  %tbody
+    - @templates.all.each do |template|
+      %tr
+        %td
+          = template.title
+        %td
+          = template.text_example
+        %td.text-right
+          - if !@package.templates.include?(template)
+            = link_to "Add", add_template_admin_package_path(@package, {template: template}), method: :put, class: 'btn btn-primary'
+          - else
+            .btn-group
+              = link_to remove_template_admin_package_path(@package, {template: template}), method: :put, class: "btn btn-danger", data: { confirm: 'Are you sure to remove?'} do
+                %span.glyphicon.glyphicon-trash

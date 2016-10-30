@@ -1,0 +1,22 @@
+#video-overview
+  .box-header
+    //= link_to "<span class='glyphicon glyphicon-film'></span> New Video".html_safe, new_video_path, class: 'btn btn-primary pull-right'
+    %h2
+      %span.glyphicon.glyphicon-film
+      Videos
+
+  .box-body
+    .table-responsive
+      %table.table.table-condensed.table-striped
+        %thead
+          %tr
+            %th
+            %th Title
+            %th Status
+            %th Dimensions
+            %th Uploaded
+            %th Size
+            %th Duration
+            %th
+        %tbody
+          = render @videos

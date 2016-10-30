@@ -1,0 +1,13 @@
+.box-header
+  %h2.pull-left
+    %span.glyphicon.glyphicon-th
+    Your templates
+    = link_to '(See more templates)', available_templates_path
+
+  %button.btn.btn-default.pull-right{"data-dismiss" => "modal", :type => "button"} X
+.box-body
+  .row
+    #templates
+      = render 'selection'
+  #paginator
+    = paginate @templates, :remote => true

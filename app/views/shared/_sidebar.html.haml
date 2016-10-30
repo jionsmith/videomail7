@@ -1,0 +1,7 @@
+#sidebar.row.sidebar-offcanvas{:role => "navigation"}
+  .col-xs-12.col-sm-12
+    = link_to "<span class='glyphicon glyphicon-film'></span>Record a new video".html_safe, main_app.record_path, :class => 'btn btn-primary recordvideo'
+  .col-xs-12.col-sm-12
+    = link_to "<span class='glyphicon glyphicon-cloud-upload'></span>Upload your video".html_safe, main_app.new_video_path, :class => 'btn btn-primary uploadvideo'
+  .col-xs-12.col-sm-12
+    = link_to "<span class='glyphicon glyphicon-envelope'></span>Create videomail".html_safe, new_message_path, :class => "btn btn-primary newmessage"
